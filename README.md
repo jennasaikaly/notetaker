@@ -3,7 +3,7 @@
 
   ## Description
 
-  For this challenge, we have to create an application called Note Taker that can be used to write and save notes.  The app uses an Express.js backend and saves and retrieves note data from a JSON file.  We were provided with front-end starter code, so our job was to build the back end, connect the two and then deploy the entire application to Heroku.
+  For this challenge, I had to create an application called Note Taker that can be used to write and save notes.  The app uses an Express.js back-end and saves and retrieves note data from a JSON file.  I was provided with front-end starter code, so my job was to build the back-end, connect the two and then deploy the entire application to Heroku.
 
   
 
@@ -11,8 +11,8 @@
 
   * [Installation](#installation)
   * [Usage](#usage)
-  * [Contributing](#contributing)
-  * [Tests](#tests)
+  * [Link](#link)
+  * [Screenshot](#screenshot)
    
   
   ## Installation
@@ -23,13 +23,13 @@
 
   The project is used by visiting the project link and using the site to take notes that will be saved on a server so that they can be retrieved at any time.
 
-  ## Contributing
+  ## Link
 
-  There are no contribution guidelines.
+  https://jennasaikaly-notetaker.herokuapp.com/
 
-  ## Tests
+  ## Screenshot
 
-  There are no tests for this project
+  ![image](https://user-images.githubusercontent.com/99379999/167540965-b3f67854-d509-46b8-b421-e60da4a80542.png)
   
   ## Questions
 
