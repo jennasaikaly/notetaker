@@ -1,47 +1,51 @@
 const express = require('express');
-//tells the app to use the port that Heroku apps serve from 
-const PORT = process.env.PORT || 3001;
+const { notes } = require('./data/db');
+const PORT = process.env.PORT || 3001; //accessing heroku port
 //instantiate's the server
 const app = express();
+const fs = require('fs');
+const path = require('path');
+app.use(express.static('public'));
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json())
-const { notes } = require('./data/db');
-const fs = require('fs');
-const path = require('path');
+
+
+
 
 // uuid
 //const { v4: uuidv4 } = require('uuid');
 
 //uuidv4();
 //create new note
-function createNewNote(body, notesArray) {
-    const note = body;
-    notesArray.push(note);
+// function createNewNote(body, notesArray) {
+//     debugger;
+//     const note = body;
+//     notesArray.push(note);
 
-    fs.writeFileSync(
-        path.join(__dirname, './data/db.json'),
-        JSON.stringify({ notes: notesArray }, null, 2)
-    );
-    // return finished code to post route for response
-    return note;
-}
+//     fs.writeFileSync(
+//         path.join(__dirname, './data/db.json'),
+//         JSON.stringify({ notes: notesArray }, null, 2)
+//     );
+//     // return finished code to post route for response
+//     return note;
+// }
 
 //function to validate input
-function validateNote(note) {
-    if (!note.title || typeof note.title !== 'string') {
-        return false;
-    }
-    if (!note.text || typeof note.text !== 'string') {
-        return false;
-    }
-    return true;
-}
-function findById(id, notesArray) {
-    const result = notesArray.filter(note => note.id === id)[0];
-    return result;
-  }
+// function validateNote(note) {
+//     if (!note.title || typeof note.title !== 'string') {
+//         return false;
+//     }
+//     if (!note.text || typeof note.text !== 'string') {
+//         return false;
+//     }
+//     return true;
+// }
+// function findById(id, notesArray) {
+//     const result = notesArray.filter(note => note.id === id)[0];
+//     return result;
+//   }
 //GET routes
 //creates a route that the front-end can request (get) data from
 app.get('/api/notes', (req, res) => {
@@ -74,6 +78,15 @@ app.post('/api/notes', (req, res) => {
     }
 });
 
+//route to serve index.HTML
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+  });
+
+  //route to serve notes.HTML
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+  });
 //makes the app listen
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
