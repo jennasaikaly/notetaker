@@ -1,4 +1,3 @@
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -68,6 +67,7 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
+    //debugger;
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,

@@ -1,3 +1,7 @@
+
+
+
+
 const express = require('express');
 const { notes } = require('./data/db');
 const PORT = process.env.PORT || 3001; //accessing heroku port
@@ -14,38 +18,42 @@ app.use(express.json())
 
 
 
+
+
 // uuid
 //const { v4: uuidv4 } = require('uuid');
 
 //uuidv4();
 //create new note
-// function createNewNote(body, notesArray) {
-//     debugger;
-//     const note = body;
-//     notesArray.push(note);
+function createNewNote(body, notesArray) {
+    debugger;
+    const note = body;
+    notesArray.push(note);
 
-//     fs.writeFileSync(
-//         path.join(__dirname, './data/db.json'),
-//         JSON.stringify({ notes: notesArray }, null, 2)
-//     );
-//     // return finished code to post route for response
-//     return note;
-// }
+    fs.writeFileSync(
+        path.join(__dirname, './data/db.json'),
+        JSON.stringify({ notes: notesArray }, null, 2)
+    );
+    // return finished code to post route for response
+    return note;
+}
 
 //function to validate input
-// function validateNote(note) {
-//     if (!note.title || typeof note.title !== 'string') {
-//         return false;
-//     }
-//     if (!note.text || typeof note.text !== 'string') {
-//         return false;
-//     }
-//     return true;
-// }
+function validateNote(note) {
+    if (!note.title || typeof note.title !== 'string') {
+        return false;
+    }
+    if (!note.text || typeof note.text !== 'string') {
+        return false;
+    }
+    return true;
+}
 // function findById(id, notesArray) {
 //     const result = notesArray.filter(note => note.id === id)[0];
 //     return result;
 //   }
+
+
 //GET routes
 //creates a route that the front-end can request (get) data from
 app.get('/api/notes', (req, res) => {
