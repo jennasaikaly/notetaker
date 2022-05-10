@@ -1,7 +1,3 @@
-
-
-
-
 const express = require('express');
 const { notes } = require('./data/db');
 const PORT = process.env.PORT || 3001; //accessing heroku port
@@ -15,18 +11,12 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json())
 
-
-
-
-
-
 // uuid
 //const { v4: uuidv4 } = require('uuid');
-
 //uuidv4();
+
 //create new note
 function createNewNote(body, notesArray) {
-    debugger;
     const note = body;
     notesArray.push(note);
 
@@ -52,7 +42,6 @@ function validateNote(note) {
 //     const result = notesArray.filter(note => note.id === id)[0];
 //     return result;
 //   }
-
 
 //GET routes
 //creates a route that the front-end can request (get) data from
@@ -95,6 +84,20 @@ app.get('/', (req, res) => {
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
   });
+
+  // wildcard route
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+  });
+//delete route -- will finish this some other time whenever I refactor
+//   app.delete('/api/notes/:id', (req, res) => {
+//     const result = findById(req.params.id, notes);
+//     if (result) {
+//         res.json(result);
+//       } else {
+//         res.sendStatus(404);
+//       }
+// });
 //makes the app listen
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
